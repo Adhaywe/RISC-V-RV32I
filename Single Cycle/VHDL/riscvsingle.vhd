@@ -10,12 +10,13 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.all;
 
 entity riscvsingle is
-    port (clk, rst:             in STD_LOGIC;
-          PC:                   out STD_LOGIC_VECTOR(31 downto 0);
-          Instr:                in STD_LOGIC_VECTOR(31 downto 0);
-          MemWrite:             out STD_LOGIC;
-          ALUResult, WriteData: out STD_LOGIC_VECTOR(31 downto 0);
-          ReadData:             in STD_LOGIC_VECTOR(31 downto 0)
+    port (
+            clk, rst:             in STD_LOGIC;
+            PC:                   out STD_LOGIC_VECTOR(31 downto 0);
+            Instr:                in STD_LOGIC_VECTOR(31 downto 0);
+            MemWrite:             out STD_LOGIC;
+            ALUResult, WriteData: out STD_LOGIC_VECTOR(31 downto 0);
+            ReadData:             in STD_LOGIC_VECTOR(31 downto 0)
         );
     
 end;

@@ -27,9 +27,7 @@ module datapath (
        input logic [2:0]  imm_src_d,
 	   input logic        pc_src_e,
 	   input logic        alu_src_b_e,
-	   //input logic        alu_src_a_e,        //check bit width for a and b
 	   input alu_op_t     alu_op_e,
-	   //input logic        mem_write_m,
 	   input logic        reg_write_w,
 	   input logic [1:0]  result_src_w,
 
@@ -60,19 +58,17 @@ logic [4:0]  ra1_d, ra2_d, wa3_d;
 
 // execute stage signals
 logic [31:0] pc_target_e;
-logic [31:0] rd1_e, rd2_e, pc_e, imm_ext_e, pc_plus_4_e;
-//logic [4:0]  rs1_e, rs2_e;   //to be connected with hazard unit 
+logic [31:0] rd1_e, rd2_e, pc_e, imm_ext_e, pc_plus_4_e; 
 logic [4:0]  rd_e;
 logic [31:0] alu_src_BE, alu_src_BE_E, alu_src_AE, alu_result_e, write_data_e;
 
 // memory stage signals
 
 logic [31:0] alu_result_m, pc_plus_4_m, write_data_m;
-//logic [4:0]  rd_m;
 
 // write back
 logic [31:0] alu_result_w, read_data_w, pc_plus_4_w;
-//logic [4:0]  rd_w;
+
 
 
 
@@ -156,7 +152,7 @@ assign rd2_d = rd2;
 
 extend ext_instance (
 	.instr(instr_d[31:7]), 
-    .imm_src(imm_src_d),       //bit width mismatch
+    .imm_src(imm_src_d),       
 	.imm_ext(imm_ext_d)
 );
 
@@ -177,8 +173,8 @@ id_ex_stage d_e_stage_instance (
 	.pc_e(pc_e),
 	.imm_ext_e(imm_ext_e),
 	.pc_plus_4_e(pc_plus_4_e),
-	.rs1_e(rs1_e),            // to hazard unit but for now bind it to 1
-	.rs2_e(rs2_e),            // to hazard unit but for now bind it to 1
+	.rs1_e(rs1_e),            // to hazard unit 
+	.rs2_e(rs2_e),            // to hazard unit 
 	.rd_e(rd_e)
 );
 

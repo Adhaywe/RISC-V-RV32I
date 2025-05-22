@@ -111,7 +111,6 @@ assign pc_src_e = branch_e & zero_e | jump_e;
 control_ex_mem_stage c_e_m_reg_instance (
 	.clk(clk), 
 	.rst(rst), 
-    //.clr(),
 	.reg_write_e(reg_write_e),
 	.mem_write_e(mem_write_e),
 	.result_src_e(result_src_e),
@@ -126,7 +125,6 @@ control_ex_mem_stage c_e_m_reg_instance (
 control_mem_wb_stage c_m_w_reg_instance (
 	.clk(clk), 
 	.rst(rst), 
-    //.clr(clr),
 	.reg_write_m(reg_write_m),
 	.result_src_m(result_src_m),
 	.reg_write_w(reg_write_w),

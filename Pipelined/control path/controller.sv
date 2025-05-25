@@ -8,15 +8,15 @@ import types ::*;
 
 
 module controller (
-	input 				clk, rst, flush_e,
+	input               clk, rst, flush_e,
 	input logic [31:0] 	instr_d,
 	input logic 		zero_e,
 
 	//output
 	output logic [2:0]  imm_src_d,
-	output logic 		pc_src_e,
-	output logic     	alu_src_b_e,
-	output logic    	alu_src_a_e,        //check bit width for a and b
+	output logic        pc_src_e,
+	output logic        alu_src_b_e,
+	output logic        alu_src_a_e,        //check bit width for a and b
 	output alu_op_t 	alu_op_e,
 	output logic 		mem_write_m,
 	output logic 		reg_write_w,

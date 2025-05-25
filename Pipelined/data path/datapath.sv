@@ -10,7 +10,7 @@ module datapath (
 	   // input
 	   input logic        clk, rst,
 	   input logic [31:0] instr_f,    //instruction from memory
-       input logic [31:0] read_data_m,  
+	   input logic [31:0] read_data_m,  
 
 	   // output
 	   // fetch stage

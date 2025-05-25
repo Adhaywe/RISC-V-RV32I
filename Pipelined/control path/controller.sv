@@ -15,9 +15,9 @@ module controller (
 	//output
 	output logic [2:0]  imm_src_d,
 	output logic 		pc_src_e,
-    output logic     	alu_src_b_e,
+	output logic     	alu_src_b_e,
 	output logic    	alu_src_a_e,        //check bit width for a and b
-    output alu_op_t 	alu_op_e,
+	output alu_op_t 	alu_op_e,
 	output logic 		mem_write_m,
 	output logic 		reg_write_w,
 	output logic        reg_write_m,
@@ -40,8 +40,8 @@ assign funct7b5_d = instr_d[30];
 // decode stage signals
 logic 		  reg_write_d;
 logic [1:0]   result_src_d;
-logic 		  mem_write_d;
-logic 		  jump_d;
+logic         mem_write_d;
+logic         jump_d;
 logic         branch_d;
 alu_control_t alu_control_d;
 

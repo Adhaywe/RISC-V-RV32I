@@ -24,12 +24,12 @@ module datapath (
 	   output logic [31:0] mem_addr_m, // data to be written to mem
 
 	   // control signals
-       input logic [2:0]  imm_src_d,
-	   input logic        pc_src_e,
-	   input logic        alu_src_b_e,
-	   input alu_op_t     alu_op_e,
-	   input logic        reg_write_w,
-	   input logic [1:0]  result_src_w,
+       input logic [2:0]   imm_src_d,
+	   input logic         pc_src_e,
+	   input logic         alu_src_b_e,
+	   input alu_op_t      alu_op_e,
+	   input logic         reg_write_w,
+	   input logic [1:0]   result_src_w,
 
 	   // hazard unit
 	   output logic [4:0]  rs1_addr_e, rs2_addr_e,

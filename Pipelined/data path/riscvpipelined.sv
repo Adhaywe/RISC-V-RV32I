@@ -7,9 +7,9 @@
 import types ::*;
 
 module riscvpipelined (
-	    input logic		   clk, rst,
-		input logic [31:0] read_data_m,
-		input logic [31:0] instr_f,
+	    input logic		    clk, rst,
+		input logic [31:0]  read_data_m,
+		input logic [31:0]  instr_f,
 
 		//output
 		output logic [31:0] pc_f,
@@ -22,17 +22,15 @@ module riscvpipelined (
 logic [31:0] instr_d;
 
 logic [2:0]	 imm_src_d;
-logic		pc_src_e;
-logic 		zero_e;
-logic       alu_src_b_e;
-logic       alu_src_a_e;      //check bit width for a and b
-//logic [2:0] alu_control_e;
-logic 		reg_write_w;
-logic       reg_write_m;
-logic [1:0] result_src_e;
-logic [1:0] result_src_w;
-//logic       clr;
-alu_op_t    alu_op_e;
+logic		 pc_src_e;
+logic 		 zero_e;
+logic        lu_src_b_e;
+logic        alu_src_a_e;      //check bit width for a and b
+logic 		 reg_write_w;
+logic        reg_write_m;
+logic [1:0]  result_src_e;
+logic [1:0]  result_src_w;
+alu_op_t     alu_op_e;
 
 
 // hazard unit
@@ -49,7 +47,6 @@ logic        stall_f, stall_d, flush_e, flush_d;
 controller control_unit_instance (
 	   .clk(clk),
 	   .rst(rst),
-	   //.clr(clr),
 	   .flush_e(flush_e),            //remember
 	   .instr_d(instr_d),
 	   .zero_e(zero_e),
@@ -78,9 +75,7 @@ datapath dp_instance (
 		.imm_src_d(imm_src_d),
 		.pc_src_e(pc_src_e),
 		.alu_src_b_e(alu_src_b_e),
-		//.alu_src_a_e(alu_src_a_e),
 		.alu_op_e(alu_op_e),
-		//.mem_write_m(mem_write),
 		.reg_write_w(reg_write_w),
 		.result_src_w(result_src_w),
 		.rs1_addr_e(rs1_addr_e), 

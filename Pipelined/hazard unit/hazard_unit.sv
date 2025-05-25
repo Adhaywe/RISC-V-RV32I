@@ -9,13 +9,13 @@ import types ::*;
 
 module hazard_unit(
     // source registers
-    input logic [4:0] rs1_addr_e, rs2_addr_e, 
+    input logic [4:0]  rs1_addr_e, rs2_addr_e, 
 
     // destination register from mem stage
-    input logic [4:0] rd_m,
+    input logic [4:0]  rd_m,
     
     // destination register from writeback stage
-    input logic [4:0] rd_w,
+    input logic [4:0]  rd_w,
 
     // register write signals from mem and write back stages
     input logic        reg_write_w, reg_write_m,
@@ -25,7 +25,7 @@ module hazard_unit(
     input logic  [4:0] rs1_d, rs2_d, rd_e,
 
     // control hazard
-    input logic       pc_src_e,
+    input logic        pc_src_e,
 
     // forwarding control signal for src a and b
     output forward_t   forward_a_e, forward_b_e,

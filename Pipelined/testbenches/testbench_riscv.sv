@@ -31,7 +31,7 @@ module testbench_riscv();
 	  rst = 0;
   
 	  // Run simulation
-	  #200; // Adjust based on instruction count
+	  #200; 
 	  $display("Test start");
 	end
   

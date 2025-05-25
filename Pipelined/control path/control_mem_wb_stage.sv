@@ -7,26 +7,26 @@
 
 
 module control_mem_wb_stage (
-       input logic clk, rst, //clr,
+       input logic        clk, rst, 
 
        //input 
-       input logic reg_write_m,
-       input logic [1:0] result_src_m, 
+       input logic        reg_write_m,
+       input logic [1:0]  result_src_m, 
 
        //output
-       output logic reg_write_w,
+       output logic       reg_write_w,
        output logic [1:0] result_src_w 
 );
 
 always_ff @ (posedge clk or posedge rst) 
 begin
        if (rst) begin
-              reg_write_w <= 0;
+              reg_write_w  <= 0;
               result_src_w <= 0;
        end
 
        else begin
-              reg_write_w <= reg_write_m;
+              reg_write_w  <= reg_write_m;
               result_src_w <= result_src_m;
        end
 

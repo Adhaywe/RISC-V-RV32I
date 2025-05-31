@@ -10,7 +10,7 @@ module datapath (
 	   // input
 	   input logic        clk, rst,
 	   input logic [31:0] instr_f,    //instruction from memory
-	   input logic [31:0] read_data_m,  
+       input logic [31:0] read_data_m,  //???
 
 	   // output
 	   // fetch stage
@@ -18,7 +18,7 @@ module datapath (
        // decode stage
 	   output logic [31:0] instr_d,
        // execute stage
-	   output logic zero_e,
+	   output logic        zero_e,
        // memory stage
 	   output logic [31:0] mem_data_m, // address of the memo location
 	   output logic [31:0] mem_addr_m, // data to be written to mem
@@ -33,9 +33,9 @@ module datapath (
 
 	   // hazard unit
 	   output logic [4:0]  rs1_addr_e, rs2_addr_e,
-	   output logic [4:0]  rd_m, rd_w,
+	   output logic [4:0]  rd_m, rd_w, rd_e,
 
-	   output logic [4:0]  rs1_addr_d, rs2_addr_d, rd_addr_e,
+	   output logic [4:0]  rs1_addr_d, rs2_addr_d,
 
 	   input forward_t     forward_a_e, forward_b_e,
 	   input logic         stall_f, stall_d, flush_e, flush_d
@@ -59,9 +59,7 @@ logic [4:0]  ra1_d, ra2_d, wa3_d;
 // execute stage signals
 logic [31:0] pc_target_e;
 logic [31:0] rd1_e, rd2_e, pc_e, imm_ext_e, pc_plus_4_e; 
-logic [4:0]  rd_e;
 logic [31:0] alu_src_BE, alu_src_BE_E, alu_src_AE, alu_result_e, write_data_e;
-
 // memory stage signals
 
 logic [31:0] alu_result_m, pc_plus_4_m, write_data_m;
@@ -181,7 +179,6 @@ id_ex_stage d_e_stage_instance (
 
 assign rs1_addr_e = rs1_e;
 assign rs2_addr_e = rs2_e;
-assign rd_addr_e  = wa3_d;
 
 // execute memory stage
 adder pcaddbranch (

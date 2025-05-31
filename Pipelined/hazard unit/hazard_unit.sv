@@ -63,7 +63,7 @@ end
 
 // solving data hazards with stalls
 
-assign lwstall = (result_src_e[0] & ((rs1_d == rd_e) || (rs2_d == rd_e)));
+assign lwstall = (result_src_e[0] & ((rs1_d == rd_e) | (rs2_d == rd_e)));
 
 assign {stall_f, stall_d} = lwstall ? 2'b11 : 2'b00;
 
@@ -71,7 +71,7 @@ assign {stall_f, stall_d} = lwstall ? 2'b11 : 2'b00;
 // sovling control hazards
 
 assign flush_d = pc_src_e;
-assign flush_e = lwstall || pc_src_e;
+assign flush_e = lwstall | pc_src_e;
 
 
 endmodule

@@ -7,7 +7,7 @@
 
 
 module control_ex_mem_stage (
-       input logic        clk, rst, //clr,
+       input logic        clk, rst,
 
        //input 
        input logic        reg_write_e, mem_write_e,

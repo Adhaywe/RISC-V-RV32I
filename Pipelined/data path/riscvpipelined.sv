@@ -7,9 +7,9 @@
 import types ::*;
 
 module riscvpipelined (
-	    input logic		    clk, rst,
-		input logic [31:0]  read_data_m,
-		input logic [31:0]  instr_f,
+	    input logic		   clk, rst,
+		input logic [31:0] read_data_m,
+		input logic [31:0] instr_f,
 
 		//output
 		output logic [31:0] pc_f,
@@ -24,8 +24,8 @@ logic [31:0] instr_d;
 logic [2:0]	 imm_src_d;
 logic		 pc_src_e;
 logic 		 zero_e;
-logic        lu_src_b_e;
-logic        alu_src_a_e;      //check bit width for a and b
+logic        alu_src_b_e;
+logic        alu_src_a_e;      
 logic 		 reg_write_w;
 logic        reg_write_m;
 logic [1:0]  result_src_e;
@@ -36,7 +36,8 @@ alu_op_t     alu_op_e;
 // hazard unit
 
 logic [4:0]  rs1_addr_e, rs2_addr_e;
-logic [4:0]  rs1_addr_d, rs2_addr_d, rd_addr_e;
+logic [4:0]  rs1_addr_d, rs2_addr_d;
+logic [4:0]  rd_e;
 logic [4:0]  rd_m;
 logic [4:0]  rd_w;
 forward_t    forward_a_e, forward_b_e;
@@ -74,7 +75,7 @@ datapath dp_instance (
 		.mem_addr_m(data_addr_m),
 		.imm_src_d(imm_src_d),
 		.pc_src_e(pc_src_e),
-		.alu_src_b_e(alu_src_b_e),
+		.alu_src_b_e(alu_src_b_e),		
 		.alu_op_e(alu_op_e),
 		.reg_write_w(reg_write_w),
 		.result_src_w(result_src_w),
@@ -82,9 +83,9 @@ datapath dp_instance (
 		.rs2_addr_e(rs2_addr_e),
 		.rd_m(rd_m),
 		.rd_w(rd_w), 
+		.rd_e(rd_e),
 		.rs1_addr_d(rs1_addr_d), 
 		.rs2_addr_d(rs2_addr_d), 
-		.rd_addr_e(rd_addr_e),
 		.forward_a_e(forward_a_e), 
 		.forward_b_e(forward_b_e),
 		.stall_d(stall_d),
@@ -105,7 +106,7 @@ hazard_unit hazard_unit_instance (
 	  .result_src_e(result_src_e),
 	  .rs1_d(rs1_addr_d),
 	  .rs2_d(rs2_addr_d),
-	  .rd_e(rd_addr_e),
+	  .rd_e(rd_e),
 	  .pc_src_e(pc_src_e),
 	  .forward_a_e(forward_a_e),
 	  .forward_b_e(forward_b_e),

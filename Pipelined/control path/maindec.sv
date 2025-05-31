@@ -91,10 +91,10 @@ always_comb begin
 			mem_write   = 1'b0;
 			imm_src     = 3'b011;  
 			alu_src_a   = 1'b0;
-			alu_src_b   = 1'b1;
+			alu_src_b   = 1'b0;
 			result_src  = 2'b10;
 			branch      = 1'b0;
-			jump        = 1'b0;
+			jump        = 1'b1;
 			alu_control = ALU_CONTROL_ADD;
 		end
 		
@@ -103,17 +103,17 @@ always_comb begin
 			mem_write   = 1'b0;
 			imm_src     = 3'b010;  
 			alu_src_a   = 1'b0;
-			alu_src_b   = 1'b1;
+			alu_src_b   = 1'b0;
 			result_src  = 2'b00;
 			branch      = 1'b1;
 			jump        = 1'b0;
-			alu_control = ALU_CONTROL_ADD;
+			alu_control = ALU_CONTROL_SUB;
 
 			//to be extended use a mux to choose the correct result
 			//case(funct3)
-			//	3'b000: branch_src    = ; // BEQ
-			//	3'b001: branch_src    = ; // BNQ choose  ~zero flag
-			//	default: branch_src   = ; // for the rest check ALU result (BLT, BGE...)
+				//3'b000:  branch_src  = ; // BEQ
+				//3'b001:  branch_src  = ; // BNQ choose  ~zero flag
+				//default: branch_src  = ; // for the rest check ALU result (BLT, BGE...)
 			//endcase
 		end
 

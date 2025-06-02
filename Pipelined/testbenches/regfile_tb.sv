@@ -1,6 +1,6 @@
 module regfile_tb();
-  logic clk, reset, we3;
-  logic [5:0] a1, a2, a3;
+  logic        clk, reset, we3;
+  logic [5:0]  a1, a2, a3;
   logic [31:0] wd3;
   logic [31:0] rd1, rd2, rd1_expected, rd2_expected;
   logic [31:0] vectornum, errors;

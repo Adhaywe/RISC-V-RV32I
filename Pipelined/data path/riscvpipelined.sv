@@ -7,9 +7,9 @@
 import types ::*;
 
 module riscvpipelined (
-	    input logic		   clk, rst,
-		input logic [31:0] read_data_m,
-		input logic [31:0] instr_f,
+	    input logic		    clk, rst,
+		input logic [31:0]  read_data_m,
+		input logic [31:0]  instr_f,
 
 		//output
 		output logic [31:0] pc_f,
@@ -48,7 +48,7 @@ logic        stall_f, stall_d, flush_e, flush_d;
 controller control_unit_instance (
 	   .clk(clk),
 	   .rst(rst),
-	   .flush_e(flush_e),            //remember
+	   .flush_e(flush_e),           
 	   .instr_d(instr_d),
 	   .zero_e(zero_e),
 	   .imm_src_d(imm_src_d),

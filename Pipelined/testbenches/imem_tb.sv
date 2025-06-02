@@ -16,7 +16,7 @@ module imem_tb();
   
     initial begin
       // Load expected contents
-      $readmemh("C:/Users/Adam/Desktop/ComputerArchitecture/RISC V_Pipelined/riscvtest.hex", expected_mem);
+      $readmemh("riscvtest.hex", expected_mem);
   
       // Wait for memory to initialize
       #10;

@@ -20,20 +20,20 @@ module if_id_stage (
 always_ff @ (posedge clk or posedge rst)
 begin
     if (rst) begin
-        pc_d <= 0;
+        pc_d        <= 0;
         pc_plus_4_d <= 0;
-        instr_d <= 0;
+        instr_d     <= 0;
     end
     else if (en) begin
         if (clr) begin
-            pc_d <= 0;
+            pc_d        <= 0;
             pc_plus_4_d <= 0;
-            instr_d <= 0;
+            instr_d     <= 0;
         end
         else begin
-            pc_d <= pc_f;
+            pc_d        <= pc_f;
             pc_plus_4_d <= pc_plus_4_f;
-            instr_d <= instr_f;
+            instr_d     <= instr_f;
         end
     end 
 end

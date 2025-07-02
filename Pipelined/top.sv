@@ -18,27 +18,27 @@ logic [31:0] pc_f, instr_f, read_data_m;
 //instantiate processor and memories    
 
 riscvpipelined rvpipe_instance (
-            .clk(clk), 
-            .rst(rst), 
-            .pc_f(pc_f), 
-            .instr_f(instr_f),
-            .mem_write(mem_write),
-            .data_addr_m(data_addr_m),
-            .write_data_m(write_data_m),
-            .read_data_m(read_data_m)
+            .clk          ( clk         ), 
+            .rst          ( rst         ), 
+            .pc_f         ( pc_f        ), 
+            .instr_f      ( instr_f     ),
+            .mem_write    ( mem_write   ),
+            .data_addr_m  ( data_addr_m ),
+            .write_data_m ( write_data_m),
+            .read_data_m  ( read_data_m )
 );
                     
 imem imem (
-           .a(pc_f), 
-           .rd(instr_f)
+           .a  ( pc_f   ), 
+           .rd ( instr_f)
 );
 
 dmem dmem (
-           .clk(clk), 
-           .we(mem_write),
-           .a(data_addr_m), 
-           .wd(write_data_m), 
-           .rd(read_data_m)
+           .clk ( clk          ), 
+           .we  ( mem_write    ),
+           .a   ( data_addr_m  ), 
+           .wd  ( write_data_m ), 
+           .rd  ( read_data_m  )
 );
 
 endmodule

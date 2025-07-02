@@ -11,11 +11,11 @@ module imem_wb_stage (
 
        //input 
        input logic [31:0]  alu_result_m, read_data_m, pc_plus_4_m,
-       input logic [4:0]   rd_m,
+       input logic [ 4:0]  rd_m,
 
        //output
        output logic [31:0] alu_result_w, read_data_w, pc_plus_4_w,
-       output logic [4:0]  rd_w
+       output logic [ 4:0] rd_w
 );
 
 always_ff @ (posedge clk or posedge rst)

@@ -2,7 +2,7 @@
 // Design: control_de_ex_stage.sv
 // Author: Adam 
 // Description: pipeline register for the control signals between decode and execute stages
-// Date: 08.05.2025
+// v 0.1
 //******************************************************************************************
 import types::*;
 

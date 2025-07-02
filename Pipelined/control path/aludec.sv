@@ -15,8 +15,8 @@ module aludec (
 
 always_comb
    case(alu_control)
-		ALU_CONTROL_ADD:    alu_op = ADD; 					// addition
-		ALU_CONTROL_SUB:    alu_op = SUB; 					// subtraction
+		ALU_CONTROL_ADD:    alu_op = ADD; 		// addition
+		ALU_CONTROL_SUB:    alu_op = SUB; 		// subtraction
 		
 		ALU_CONTROL_RTYPE: begin
 			case(funct3) // function bits

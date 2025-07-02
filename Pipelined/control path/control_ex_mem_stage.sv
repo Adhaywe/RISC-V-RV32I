@@ -2,7 +2,7 @@
 // Design: control_ex_mem_stage.sv
 // Author: Adam 
 // Description: pipeline register for the control signals between execute and memory stages
-// Date: 08.05.2025
+// v 0.1
 //******************************************************************************************
 
 

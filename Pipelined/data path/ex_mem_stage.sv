@@ -7,15 +7,15 @@
 
 
 module ex_mem_stage (
-       input logic         clk, rst,
+       input logic          clk, rst,
 
        //input 
-       input logic [31:0]  alu_result_e, write_data_e, pc_plus_4_e,
-       input logic [4:0]   rd_e,
+       input  logic [31:0]  alu_result_e, write_data_e, pc_plus_4_e,
+       input  logic [4:0 ]  rd_e,
 
        //output
-       output logic [31:0] alu_result_m, write_data_m, pc_plus_4_m,
-       output logic [4:0]  rd_m
+       output logic [31:0]  alu_result_m, write_data_m, pc_plus_4_m,
+       output logic [4:0 ]  rd_m
 );
 
 always_ff @ (posedge clk or posedge rst)

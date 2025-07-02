@@ -123,16 +123,17 @@ always_comb begin
 
 end
 
-//always_comb
-  // case(op)
+/*always_comb
+   case(op)
 		// reg_write | imm_src | alu_src_a | alu_src_b | mem_write | result_src | branch | alu_op | jump
-	//	7'b0000011: controls = 14'b1_00_10_01_0_01_0_00_0; // lw
-	//	7'b0100011: controls = 14'b0_01_10_01_1_00_0_00_0; // sw
-	//	7'b0110011: controls = 14'b1_xx_10_00_0_00_0_10_0; // R type
-	//	7'b1100011: controls = 14'b0_10_10_00_0_00_1_01_0; // beq
-	//	7'b0010011: controls = 14'b1_00_10_01_0_00_0_10_0; // I type ALU
-	//	7'b1101111: controls = 14'b1_11_01_10_0_00_0_00_1; // jal
-	//	default:    controls = 14'bx_xx_xx_xx_x_xx_x_xx_x; // default value
-   //endcase
+		7'b0000011: controls = 14'b1_00_10_01_0_01_0_00_0; // lw
+		7'b0100011: controls = 14'b0_01_10_01_1_00_0_00_0; // sw
+		7'b0110011: controls = 14'b1_xx_10_00_0_00_0_10_0; // R type
+		7'b1100011: controls = 14'b0_10_10_00_0_00_1_01_0; // beq
+		7'b0010011: controls = 14'b1_00_10_01_0_00_0_10_0; // I type ALU
+		7'b1101111: controls = 14'b1_11_01_10_0_00_0_00_1; // jal
+		default:    controls = 14'bx_xx_xx_xx_x_xx_x_xx_x; // default value
+ endcase
+ */
 
 endmodule

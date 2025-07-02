@@ -15,11 +15,11 @@ module testbench_riscv();
 	logic        mem_write;
   
 	top dut (
-	  .clk(clk),
-	  .rst(rst),
-	  .write_data_m(write_data_m),
-	  .data_addr_m(data_addr_m),
-	  .mem_write(mem_write)
+	  .clk          ( clk          ),
+	  .rst          ( rst          ),
+	  .write_data_m ( write_data_m ),
+	  .data_addr_m  ( data_addr_m  ),
+	  .mem_write    ( mem_write    ) 
 	);
   
 	// Clock generator

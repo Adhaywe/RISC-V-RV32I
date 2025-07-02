@@ -8,15 +8,15 @@
 
 
 module id_ex_stage (
-       input logic         clk, rst, clr,
+       input  logic        clk, rst, clr,
 
        //input 
-       input logic [31:0]  rd1_d, rd2_d, pc_d, imm_ext_d, pc_plus_4_d,
-       input logic [4:0]   rs1_d, rs2_d, rd_d,
+       input  logic [31:0] rd1_d, rd2_d, pc_d, imm_ext_d, pc_plus_4_d,
+       input  logic [ 4:0] rs1_d, rs2_d, rd_d,
 
        //output
        output logic [31:0] rd1_e, rd2_e, pc_e, imm_ext_e, pc_plus_4_e,
-       output logic [4:0]  rs1_e, rs2_e, rd_e
+       output logic [ 4:0] rs1_e, rs2_e, rd_e
 );
 
 always_ff @ (posedge clk or posedge rst) 

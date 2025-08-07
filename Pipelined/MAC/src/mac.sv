@@ -1,18 +1,17 @@
 //******************************************************************************************
 // Design: mac.sv
-// Author: 
+// Author:
 // Description: 3X3 matrix addition, subtraction and multiplication module
 // v 0.1
 //******************************************************************************************
 
-import mac_pkg::*;
-
-module mac
+module mac #
 (
-    input  logic                  clk_i,
-    input  logic                  rst_i,
-    input  logic                  enable_i,
-    input  logic                  clr_i,
+    parameter DATA_WIDTH = 72,
+    parameter MAT_SIZE   = 3,
+    parameter VAR_WIDTH  = 8
+)
+(
     input  logic [DATA_WIDTH-1:0] matrixA_i,
     input  logic [DATA_WIDTH-1:0] matrixB_i,
     input  logic [           1:0] opcode_i,
@@ -43,7 +42,7 @@ module mac
      B1[1][0], B1[1][1], B1[1][2],
      B1[2][0], B1[2][1], B1[2][2]} = matrixB_i;
 
-    // Initialize tmep registers to zero
+    // Initialize temp registers to zero
     for(i=0; i<MAT_SIZE; i++) begin
        for(j=0; j<MAT_SIZE; j++) begin
         sub_result[i][j] = 8'd0;
@@ -64,8 +63,7 @@ module mac
                 for(j=0; j<MAT_SIZE; j++)
                     sub_result[i][j] = A1[i][j] - B1[i][j];
 
-        2'b10,
-        2'b11:
+        2'b10:
             for(i=0; i<MAT_SIZE; i++)
                 for(j=0; j<MAT_SIZE; j++)
                     for(k=0; k<MAT_SIZE; k++)
@@ -75,7 +73,6 @@ module mac
     endcase
     end
 
-    logic [DATA_WIDTH-1:0] accumulator;
     logic [DATA_WIDTH-1:0] temp_mul_result;
     logic [DATA_WIDTH-1:0] temp_add_result;
     logic [DATA_WIDTH-1:0] temp_sub_result;
@@ -96,25 +93,18 @@ module mac
                               sub_result[2][0], sub_result[2][1], sub_result[2][2]};
 
 
-
-    always_ff @(posedge clk_i)
-        if (rst_i)
-           accumulator <= '0;
-        else if (clr_i)
-           accumulator <= '0;
-        else
-           accumulator <= temp_mul_result;
-
-
    // ------------------------------- result mux ------------------------------------
     always_comb begin
         result_o = '0;
 
         unique case(opcode_i)
 
-         ADD: result_o = temp_add_result;
-         SUB: result_o = temp_sub_result;
-         MUL: result_o = enable_i ? accumulator + temp_mul_result : accumulator;
+         //adder result
+         MADD: result_o = temp_add_result;
+         //subtractor result
+         MSUB: result_o = temp_sub_result;
+         //multiplier result
+         MMUL: result_o = temp_mul_result;
 
          default: ;
         endcase

@@ -7,22 +7,25 @@
 //******************************************************************************************
 import types ::*;
 
-module maindec (
-	//input 
+module maindec
+(
+	//input
 	input logic [6:0]    op,
 
 	//output
 	output logic         reg_write, mem_write,
 	output logic         alu_src_b,
-	output logic         alu_src_a,			
-	output logic [1:0]   result_src, 
+	output logic         alu_src_a,
+	output logic [1:0]   result_src,
 	output logic         branch, jump,
 	output logic [2:0]   imm_src,
-    output alu_control_t alu_control 
+    output alu_control_t alu_control,
+	output mac_control_t mac_control,
+	output logic         mac_write
 );
 
 
-always_comb begin 
+always_comb begin
 	reg_write   = 1'b0;
 	mem_write   = 1'b0;
 	imm_src     = 3'b000;
@@ -32,9 +35,11 @@ always_comb begin
 	branch      = 1'b0;
 	jump        = 1'b0;
 	alu_control = ALU_CONTROL_ADD;
+	mac_control = MAC_CONTROL_MADD;
+	mac_write   = 1'b0;
 
 	case (op)
-        7'b0000011: begin          // load instruction 
+        7'b0000011: begin          // load instruction
 			reg_write   = 1'b1;
 			mem_write   = 1'b0;
 			imm_src     = 3'b000;
@@ -76,7 +81,7 @@ always_comb begin
 		7'b0100011: begin        // store
 			reg_write   = 1'b0;
 			mem_write   = 1'b1;
-			imm_src     = 3'b001;  
+			imm_src     = 3'b001;
 			alu_src_a   = 1'b0;
 			alu_src_b   = 1'b1;
 			result_src  = 2'b00;
@@ -89,7 +94,7 @@ always_comb begin
 		7'b1101111: begin       // jal
 			reg_write   = 1'b1;
 			mem_write   = 1'b0;
-			imm_src     = 3'b011;  
+			imm_src     = 3'b011;
 			alu_src_a   = 1'b0;
 			alu_src_b   = 1'b0;
 			result_src  = 2'b10;
@@ -101,7 +106,7 @@ always_comb begin
 		7'b1100011: begin         // beq for now but can be extended for other branch operators
 			reg_write   = 1'b0;
 			mem_write   = 1'b0;
-			imm_src     = 3'b010;  
+			imm_src     = 3'b010;
 			alu_src_a   = 1'b0;
 			alu_src_b   = 1'b0;
 			result_src  = 2'b00;
@@ -115,6 +120,36 @@ always_comb begin
 				//3'b001:  branch_src  = ; // BNQ choose  ~zero flag
 				//default: branch_src  = ; // for the rest check ALU result (BLT, BGE...)
 			//endcase
+		end
+
+
+		// --- MAC instruction decodeR ---
+		7'b1111000: begin
+			mac_write   = 1'b1;
+			mac_control = MAC_CONTROL_MADD;
+		end
+
+		7'b1111001: begin
+			mac_write   = 1'b1;
+			mac_control = MAC_CONTROL_MSUB;
+		end
+
+		7'b1111010: begin
+			mac_write   = 1'b1;
+			mac_control = MAC_CONTROL_MMUL;
+		end
+
+		7'b1111011: begin            // MLOAD is similar to load instruction
+			reg_write   = 1'b1;
+			mem_write   = 1'b0;
+			imm_src     = 3'b000;
+			alu_src_a   = 1'b0;
+			alu_src_b   = 1'b1;
+			result_src  = 2'b01;
+			branch      = 1'b0;
+			jump        = 1'b0;
+			alu_control = ALU_CONTROL_ADD;
+			mac_control = MAC_CONTROL_MLOAD;
 		end
 
 

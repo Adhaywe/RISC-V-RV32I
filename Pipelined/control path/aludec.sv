@@ -1,16 +1,16 @@
 //******************************************************************************************
 // Design: aludec.sv
-// Author: Adam 
+// Author: Adam
 // Description: ALU decoder
 // v 0.1
 //******************************************************************************************
 import types::*;
 
 module aludec (
-	   input logic [2:0]   funct3,
-	   input logic         funct7b5,
-	   input alu_control_t alu_control,
-	   output alu_op_t     alu_op
+	   input  logic [2:0]   funct3,
+	   input  logic         funct7b5,
+	   input  alu_control_t alu_control,
+	   output alu_op_t      alu_op
 );
 
 always_comb
@@ -22,8 +22,8 @@ always_comb
 			case(funct3) // function bits
 				3'b000: begin
 					case(funct7b5)
-						1'b0:    alu_op = ADD; // ADD 
-						1'b1:    alu_op = SUB; // SUB 
+						1'b0:    alu_op = ADD; // ADD
+						1'b1:    alu_op = SUB; // SUB
 						default: alu_op = ADD; // Default to ADD
 					endcase
 				end
@@ -72,10 +72,10 @@ always_comb
                     3'b101:  alu_op = SGE;  // BGE check if a < a (we will invert the alusrca and alusrcb in the multiplexer)
                     3'b110:  alu_op = SLTU; // BLTU check if a < b unsigned
                     3'b111:  alu_op = SGEU; // BGEU operation check if b < a unsigned (we will invert the alusrca and alusrcb in the multiplexer)
-                    default: alu_op = ADD;  // Default to ADD 
+                    default: alu_op = ADD;  // Default to ADD
                 endcase
             end
-            default :        alu_op = ADD; // Default to ADD 
+            default :        alu_op = ADD; // Default to ADD
         
 		
    endcase

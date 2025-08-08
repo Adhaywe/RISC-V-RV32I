@@ -30,7 +30,7 @@ always_comb
 	 XOR  : 	alu_result = a ^ b ; 							 // xor
 	 SLL  : 	alu_result = a << b[4:0]; 				         //shift left logical sll
 	 SRL  : 	alu_result = a >> b[4:0]; 						 //shift right logical srl
-	 default : 		alu_result = 32'bx;
+	 default : 	alu_result = 32'bx;
    endcase
 
 assign zero = (alu_result == 0) ? 1 : 0;

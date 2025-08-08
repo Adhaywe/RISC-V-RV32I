@@ -11,15 +11,19 @@ module control_de_ex_stage (
 
        //input 
        input logic        reg_write_d, mem_write_d, jump_d, branch_d,
-       input logic [1:0]  result_src_d, 
+       input logic [1:0]  result_src_d,
        input logic        alu_src_a_d, alu_src_b_d,
        input alu_op_t     alu_op_d,
+       input mac_op_t     mac_op_d,
+       input logic        mac_write_d,
 
        //output
        output logic       reg_write_e, mem_write_e, jump_e, branch_e,
-       output logic [1:0] result_src_e, 
+       output logic [1:0] result_src_e,
        output logic       alu_src_a_e, alu_src_b_e,
-       output alu_op_t    alu_op_e
+       output alu_op_t    alu_op_e,
+       output mac_op_t    mac_op_e,
+       output logic       mac_write_e
 );
 
 always_ff @ (posedge clk or posedge rst) 
@@ -33,6 +37,8 @@ begin
               alu_src_a_e  <= 0;
               alu_src_b_e  <= 0;
               alu_op_e     <= alu_op_t'(4'd0);
+              mac_op_e     <= mac_op_t'(2'd0);
+              mac_write_e  <= 0;
        end
 
        else begin
@@ -44,6 +50,8 @@ begin
               alu_src_a_e  <= alu_src_a_d;
               alu_src_b_e  <= alu_src_b_d;
               alu_op_e     <= alu_op_d;
+              mac_op_e     <= mac_op_d;
+              mac_write_e  <= mac_write_d;
        end
 
 end

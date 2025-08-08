@@ -21,7 +21,7 @@ package types;
         SLL  = 4'd9,
         SRL  = 4'd10,
         SRA  = 4'd11
-} alu_op_t;
+    } alu_op_t;
 
    typedef enum logic [2:0] {
         ALU_CONTROL_ADD   = 3'd0,
@@ -29,14 +29,29 @@ package types;
         ALU_CONTROL_ITYPE = 3'd2,
         ALU_CONTROL_RTYPE = 3'd3,
         ALU_CONTROL_BTYPE = 3'd4
-} alu_control_t;
+    } alu_control_t;
+
+    typedef enum logic [1:0] {
+        MAC_CONTROL_MADD  = 2'd0,
+        MAC_CONTROL_MSUB  = 2'd1,
+        MAC_CONTROL_MMUL  = 2'd2,
+        MAC_CONTROL_MLOAD = 2'd3
+    } mac_control_t;
+
+    typedef enum logic [1:0] {
+        MADD  = 2'd0,
+        MSUB  = 2'd1,
+        MMUL  = 2'd2,
+        MLOAD = 2'd3
+    } mac_op_t;
 
 
     typedef enum logic [1:0] {
         FORWARD_NONE = 2'd0,
         FORWARD_WB   = 2'd1,
-        FORWARD_MEM  = 2'd2 
+        FORWARD_MEM  = 2'd2
     } forward_t;
+
 
 
 

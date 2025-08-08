@@ -4,6 +4,7 @@
 // Description: 3X3 matrix addition, subtraction and multiplication module
 // v 0.1
 //******************************************************************************************
+import mac_pkg::*;
 
 module mac #
 (

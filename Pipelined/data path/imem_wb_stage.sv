@@ -9,7 +9,7 @@
 module imem_wb_stage (
        input logic         clk, rst,
 
-       //input 
+       //input
        input logic [31:0]  alu_result_m, read_data_m, pc_plus_4_m,
        input logic [ 4:0]  rd_m,
 

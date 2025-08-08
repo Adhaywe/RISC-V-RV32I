@@ -31,10 +31,11 @@ module testbench_riscv();
 	  rst = 1;
 	  #20;
 	  rst = 0;
+	  $display("Test start");
   
 	  // Run simulation
-	  #200; // Adjust based on instruction count
-	  $display("Test start");
+	  #200;
+	  
 	end
   
 	// Optional: monitor memory writes

@@ -17,11 +17,13 @@ module hazard_unit(
     // destination register from writeback stage
     input logic [4:0]  rd_w,
 
+    input logic [31:0] instr_d,
+
     // register write signals from mem and write back stages
     input logic        reg_write_w, reg_write_m,
 
     // stall
-    input logic  [1:0] result_src_e,  
+    input logic  [1:0] result_src_e,
     input logic  [4:0] rs1_d, rs2_d, rd_e,
 
     // control hazard
@@ -62,8 +64,13 @@ end
 
 
 // solving data hazards with stalls
+logic  [4:0] rs3_d;
 
-assign lwstall = (result_src_e[0] & ((rs1_d == rd_e) | (rs2_d == rd_e)));
+assign rs3_d = rs2_d + 5'd2;
+
+assign lwstall = (result_src_e[0] & ((rs1_d == rd_e) | ((rs2_d == rd_e)  && instr_d[6:0] != 7'b0010011))) 
+                 || (rs3_d == rd_m);
+
 
 assign {stall_f, stall_d} = lwstall ? 2'b11 : 2'b00;
 

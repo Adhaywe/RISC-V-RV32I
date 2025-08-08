@@ -1,27 +1,3 @@
-00500113
-00C00193
-FF718393
-0023E233
-0041F2B3
-004282B3
-02728863
-0041A233
-00020463   /* beq x4 x0 around*/
-00000293
-0023A233
-005203B3
-402383B3
-0471AA23
-06002103
-005104B3
-008001EF
-00100113
-00910133
-0221A023
-00210063
-
-
-
 
 /* Hazard check*/
 
@@ -47,3 +23,79 @@ FF718393
 /*00410333*/
 /*405203b3*/
 /*00002203*/
+
+
+/*ADDI    x1, x0, 0x00     # x1 = base address for matrix A*/
+/*MLOAD   x10, 0(x1)       # Load A into x10, x11, x12*/
+
+/*ADDI    x1, x0, 0x24     # x1 = base address for matrix B*/
+/*MLOAD   x13, 0(x1)       # Load B into x13, x14, x15*/
+
+/*ADDI    x20, x0, 0x48    # x20 = base address for MADD result*/
+/*MADD    x20, x10, x13    # Store A + B to mem[0x48, 0x4C, 0x50]*/
+
+/*ADDI    x20, x0, 0x60    # x20 = base address for MSUB result*/
+/*MSUB    x20, x10, x13    # Store A - B to mem[0x60, 0x64, 0x68]*/
+
+/*ADDI    x20, x0, 0x78    # x20 = base address for MMUL result*/
+/*MMUL    x20, x10, x13    # Store A * B to mem[0x78, 0x7C, 0x80]*/
+
+00000093    // ADDI  x1, x0, 0   add row 1 of matrix A
+0000A57B    // MLOAD x10, 0(x1)
+00400113    // ADDI  x2, x0, 4   add row 2 of matrix A
+000125FB    // MLOAD X11, 0(X2)
+00800193    // ADDI  X3, X0, 8   add row 3 of matrix A
+0001A67B    // MLOAD X12, 0(X3)
+00C00213    // ADDI  x4, x0, 12   add row 1 of matrix B
+000226FB    // MLOAD x13, 0(x4)
+01000293    // ADDI  x5, x0, 16   add row 2 of matrix B
+0002A77B    // MLOAD x14, 0(x5)
+01400313    // ADDI  x6, x0, 20   add row 3 of matrix B
+000327FB    // MLOAD x15, 0(x6)
+00000013    // ADDI  x0, x0, 0
+00D500F8    // MADD  X1, X10, X13
+00000013    // ADDI  x0, x0, 0
+00000013    // ADDI  x0, x0, 0
+00D500F9    // MSUB  X2, x10, x13
+00000013    // ADDI  x0, x0, 0
+00000013    // ADDI  x0, x0, 0
+00D500FA    // MMUL  X3, X10, X13
+
+
+
+
+
+/*04800093    // ADDI x20, x0, 0x48*/
+/*00D50A78    // MADD x20, x10, x13*/
+/*06000093    // ADDI x20, x0, 0x60*/
+/*00D50A79    // MSUB x20, x10, x13*/
+/*07800093    // ADDI x20, x0, 0x78*/
+/*00D50A7A    // MMUL x20, x10, x13 */
+
+
+
+
+/*ad-hoc test for the riscv processor*/
+
+/*00C00193*/
+/*FF718393*/
+/*0023E233*/
+/*0041F2B3*/
+/*004282B3*/
+/*02728863*/
+/*0041A233*/
+/*00020463*/ /* beq x4 x0 around*/
+/*00000293*/
+/*0023A233*/
+/*005203B3*/
+/*402383B3*/
+/*0471AA23*/
+/*06002103*/
+/*005104B3*/
+/*008001EF*/
+/*00100113*/
+/*00910133*/
+/*0221A023*/
+/*00210063*/
+
+

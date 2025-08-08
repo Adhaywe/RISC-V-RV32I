@@ -14,7 +14,7 @@ module imem (input  logic [31:0] a,
 logic [31:0] RAM [63:0];
 
 initial
-   $readmemh("riscvtest.hex", RAM);
+   $readmemh("C:/Users/Adam/Downloads/PortableGit/RISC-V-RV32I/Pipelined/data path/riscvtest.hex", RAM);
 
 assign rd = RAM[a[31:2]]; //word aligned
 
